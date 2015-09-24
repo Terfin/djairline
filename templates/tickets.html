@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% include 'menu.html' %}
+    <section>
+        <table>
+            <tr>
+                <th>Ticket Number</th>
+                <th>Flight Number</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Passenger</th>
+            </tr>
+            {% for ticket in object_list %}
+            <tr>
+                <td>{{ ticket.ticket_number }}</td>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.origin }}</td>
+                <td>{{ flight.destination }}</td>
+                <td>{{ ticket.passenger }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <form action="{% url 'tickets' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit"/>
+    </form>
+</body>
+</html>

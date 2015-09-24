@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Manage Pilots Assignment</title>
+</head>
+<body>
+    {% block menu %}{% endblock %}
+    <section>
+        <table>
+            <tr>
+                <th>Flight Number</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>STD</th>
+                <th>ETD</th>
+                <th>STA</th>
+                <th>ETA</th>
+                <th>Aircraft</th>
+                <th>Pilots</th>
+            </tr>
+            {% for flight in object_list %}
+            <tr>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.origin }}</td>
+                <td>{{ flight.destination }}</td>
+                <td>{{ flight.STD | date:"m/d/y H:i" }}</td>
+                <td>{{ flight.ETD | date:"m/d/y H:i" }}</td>
+                <td>{{ flight.STA | date:"m/d/y H:i" }}</td>
+                <td>{{ flight.ETA | date:"m/d/y H:i" }}</td>
+                <td>{{ flight.aircraft.manufacturer }} - {{ flight.aircraft.model }}</td>
+                <td>{{ flight.pilots }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="8">
+                    <form action="{% url 'home' %}" method="GET">
+                        <input type="submit" value="Refresh"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </section>
+</body>
+</html>
